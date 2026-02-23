@@ -10,38 +10,67 @@ class DeliveryStatusScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // ---------------- APP BAR ----------------
-      appBar: AppBar(
-        backgroundColor: Color(0xFFF79E1B), // Orange color
-        title: Text("Delivery Status", style: TextStyle(color: Colors.white)),
-
-        // Back button
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () {
-            Navigator.pop(context); // Go back to previous screen
-          },
-        ),
-      ),
-
-      // ---------------- BODY ----------------
-      body: Center(
+      backgroundColor: Color(0xFFF79E1B), // Orange background
+      body: SafeArea(
         child: Column(
           children: [
-            SizedBox(height: 40),
-            // This makes the container take full height
+            // Top orange section with Go back button and title
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: Row(
+                children: [
+                  // Go back button
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.arrow_back_ios, size: 16),
+                          Text('Go back'),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(width: 20),
+
+                  // Title
+                  Text(
+                    'Delivery Status',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // White content section
             Expanded(
               child: Container(
-                padding: EdgeInsets.all(20),
+                width: double.infinity,
                 decoration: BoxDecoration(
-                  // color: Colors.white,
-                  // borderRadius: BorderRadius.circular(20),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
                 ),
-
-                // Scroll if content becomes long
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
+                child: Padding(
+                  padding: EdgeInsets.all(20),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
                       // Step 1
                       buildStep(
                         icon: Image.asset(
@@ -131,7 +160,8 @@ class DeliveryStatusScreen extends StatelessWidget {
                         showRightIconBackground: false,
                         
                       ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
