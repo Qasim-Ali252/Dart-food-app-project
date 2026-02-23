@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget{
       theme: ThemeData(
         fontFamily: 'Montserrat',
       ),
-      initialRoute: '/',
+      initialRoute: '/product',
       routes: {
         '/': (context) => const DeliveryStatusScreen(),
         '/basket' : (context) => const BasketScreen(),
